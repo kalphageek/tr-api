@@ -16,6 +16,6 @@ then
 else
   echo "> kill -9 $CURRENT_PID"
   kill -9 $CURRENT_PID sleep 10
-fifile
+fi
 echo "> deploy new version."
 nohup java -jar $JAR_NAME &
