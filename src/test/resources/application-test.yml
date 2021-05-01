@@ -21,7 +21,7 @@ spring:
 
 app:
   topic:
-    name: eqp.tr.ic.eqp1
+    name: test.eqp.tr.ic.eqp1
 
 logging:
   level:

@@ -43,7 +43,7 @@ public class EHubDataSourceConfig {
     public LocalContainerEntityManagerFactoryBean ehubEntityManagerFactory(EntityManagerFactoryBuilder builder) {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
-        vendorAdapter.setGenerateDdl(true);
+//        vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setShowSql(true);
 
         Properties properties = new Properties(); // Properties에 Hibernate Config 설정 추가
