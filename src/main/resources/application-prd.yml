@@ -1,0 +1,47 @@
+server:
+  port: 8081
+
+spring:
+  profiles: prd
+  datasource:
+    primary:
+      password: pgadmin
+      username: pgadmin
+      url: jdbc:postgresql://db.deogi:5432/postgres
+      driverClassName: org.postgresql.Driver
+    #      platform: primary # 초기 데이터 입력을 위한 insert sql - /resources/data-primary.sql
+    #      hikari:
+    #        maximum-pool-size: 5
+    #        minimul-idle: 1
+    ehub:
+      password: pgadmin
+      username: pgadmin
+      url: jdbc:postgresql://db.deogi:5432/postgres
+      driverClassName: org.postgresql.Driver
+#      hikari:
+#        initialization-fail-timeout: 1000000 # 서버가 가동시간을 기다리기 위해 설정
+#        maximum-pool-size: 5
+#        minimul-idle: 1
+  kafka:
+    bootstrap-servers: broker.deogi:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      properties:
+        "enable.idempotence" : true
+        "max.request.size" : 10485760 #10MB, Default 1MB
+        "batch.size": 131072 #128KB, Default 12KB
+        "linger.ms": 10 #10ms, Default 0
+        #"security.protocol": "SASL_PLAINTEXT"
+        #"sasl.mechanism": "GSSAPI"
+        #"sasl.kerberos.service.name": "<kerberos service name>"
+        #"sasl.jaas.config": "com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab=\"<keytab file path>\" principal=\"<principal>\";"
+
+app:
+  topic:
+    name: eqp.tr.ic.eqp1
+
+logging.level:
+  org.hibernate:
+    SQL: debug
+    type: trace
