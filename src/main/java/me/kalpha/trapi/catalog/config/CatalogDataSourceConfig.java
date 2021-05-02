@@ -1,4 +1,4 @@
-package me.kalpha.trapi.ehub.config;
+package me.kalpha.trapi.catalog.config;
 
 import me.kalpha.trapi.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -24,43 +23,40 @@ import java.util.Map;
 
 @Configuration
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "ehubEntityManagerFactory",
-        transactionManagerRef = "ehubTransactionManager",
-        basePackages = {"me.kalpha.trapi.ehub.repository"}//repositories
+        entityManagerFactoryRef = "catalogEntityManagerFactory",
+        transactionManagerRef = "catalogTransactionManager",
+        basePackages = {"me.kalpha.trapi.catalog.repository"}//repositories
 )
 @EnableTransactionManagement
-public class EHubDataSourceConfig {
+public class CatalogDataSourceConfig {
     @Autowired
     private JpaProperties jpaProperties;
     @Autowired
     private HibernateProperties hibernateProperties;
 
-    @Primary
-    @Bean(name = "ehubDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.ehub")
+    @Bean(name = "catalogDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.catalog")
     public DataSource dataSource(){
         return DataSourceBuilder.create().build();
     }
 
-    @Primary
-    @Bean(name = "ehubEntityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean ehubEntityManagerFactory(EntityManagerFactoryBuilder builder) {
+    @Bean(name = "catalogEntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean catalogEntityManagerFactory(EntityManagerFactoryBuilder builder) {
         Map<String, Object> properties = hibernateProperties.determineHibernateProperties(
                 jpaProperties.getProperties(), new HibernateSettings()
         );
 
         return builder
                 .dataSource(dataSource())
-                .packages("me.kalpha.trapi.ehub.entity")
-                .persistenceUnit(Constants.EHUB_UNIT_NAME)
+                .packages("me.kalpha.trapi.catalog.entity")
+                .persistenceUnit(Constants.CATALOG_UNIT_NAME)
                 .properties(properties)
                 .build();
     }
 
-    @Primary
     @Bean
-    public PlatformTransactionManager ehubTransactionManager(
-            final @Qualifier("ehubEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+    public PlatformTransactionManager catalogTransactionManager(
+            final @Qualifier("catalogEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(entityManagerFactory);
         return txManager;

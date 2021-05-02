@@ -1,6 +1,7 @@
 spring:
   profiles:
     active: prd
+    include: prd, test
   data:
     web:
       pageable:
