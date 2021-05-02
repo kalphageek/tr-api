@@ -1,5 +1,6 @@
 package me.kalpha.trapi.catalog.config;
 
+import com.zaxxer.hikari.HikariDataSource;
 import me.kalpha.trapi.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,7 +38,7 @@ public class CatalogDataSourceConfig {
     @Bean(name = "catalogDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.catalog")
     public DataSource dataSource(){
-        return DataSourceBuilder.create().build();
+        return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
     @Bean(name = "catalogEntityManagerFactory")

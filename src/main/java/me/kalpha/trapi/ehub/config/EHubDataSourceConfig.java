@@ -1,5 +1,6 @@
 package me.kalpha.trapi.ehub.config;
 
+import com.zaxxer.hikari.HikariDataSource;
 import me.kalpha.trapi.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,7 +40,7 @@ public class EHubDataSourceConfig {
     @Bean(name = "ehubDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.ehub")
     public DataSource dataSource(){
-        return DataSourceBuilder.create().build();
+        return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
 
     @Primary
