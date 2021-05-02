@@ -31,3 +31,5 @@ public List<Eqp1TrDet> getEqp1TrDets() {
 ```java
 trRepository.save(eqp1Tr)
 ```
+4. DataSourceBuilder 를 이용해 생성할 때
+    * url -> jdbcUrl 

@@ -9,7 +9,7 @@ cd $DIR
 JAR_NAME=$(ls target/*.jar | tail -n 1)
 echo "> jar name : $JAR_NAME"
 echo "> checking pid on the running process"
-CURRENT_PID=$(ps -ef | grep java | grep $JAR_NAME | awk '{print $2}')
+CURRENT_PID=$(ps -ef | grep jar | grep $appName | awk '{print $2}')
 if [ -z $CURRENT_PID ];
 then
   echo "> there is no running process."
