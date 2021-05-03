@@ -18,7 +18,7 @@ spring:
       password: pgadmin
       username: pgadmin
       jdbc-url: jdbc:postgresql://db.deogi:5432/postgres
-      driverClassName: org.postgresql.Driver
+      driver-class-name: org.postgresql.Driver
     #      platform: primary # 초기 데이터 입력을 위한 insert sql - /resources/data-primary.sql
     #      hikari:
     #        maximum-pool-size: 5
@@ -27,7 +27,7 @@ spring:
       password: pgadmin
       username: pgadmin
       jdbc-url: jdbc:postgresql://db.deogi:5432/postgres
-      driverClassName: org.postgresql.Driver
+      driver-class-name: org.postgresql.Driver
 #      hikari:
 #        initialization-fail-timeout: 1000000 # 서버가 가동시간을 기다리기 위해 설정
 #        maximum-pool-size: 5

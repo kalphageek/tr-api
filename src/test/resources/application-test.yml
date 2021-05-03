@@ -14,12 +14,12 @@ spring:
       password: sa
       username:
       jdbc-url: jdbc:h2:mem:testdb
-      driverClassName: org.h2.Driver
+      driver-class-name: org.h2.Driver
     ehub:
       password: sa
       username:
       jdbc-url: jdbc:h2:mem:testdb
-      driverClassName: org.h2.Driver
+      driver-class-name: org.h2.Driver
 
   kafka:
     bootstrap-servers: broker.deogi:9092
