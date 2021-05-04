@@ -12,18 +12,8 @@ spring:
         show-sql: true
         format_sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
   datasource:
-    catalog:
-      password: pgadmin
-      username: pgadmin
-      jdbc-url: jdbc:postgresql://db.deogi:5432/postgres
-      driver-class-name: org.postgresql.Driver
-    #      platform: primary # 초기 데이터 입력을 위한 insert sql - /resources/data-primary.sql
-    #      hikari:
-    #        maximum-pool-size: 5
-    #        minimul-idle: 1
-    ehub:
+    hikari:
       password: pgadmin
       username: pgadmin
       jdbc-url: jdbc:postgresql://db.deogi:5432/postgres
@@ -46,6 +36,18 @@ spring:
         #"sasl.mechanism": "GSSAPI"
         #"sasl.kerberos.service.name": "<kerberos service name>"
         #"sasl.jaas.config": "com.sun.security.auth.module.Krb5LoginModule required useKeyTab=true storeKey=true keyTab=\"<keytab file path>\" principal=\"<principal>\";"
+
+catalog:
+  datasource:
+    hikari:
+      password: pgadmin
+      username: pgadmin
+      jdbc-url: jdbc:postgresql://db.deogi:5432/postgres
+      driver-class-name: org.postgresql.Driver
+    #      platform: primary # 초기 데이터 입력을 위한 insert sql - /resources/data-primary.sql
+    #      hikari:
+    #        maximum-pool-size: 5
+    #        minimul-idle: 1
 
 app:
   topic:

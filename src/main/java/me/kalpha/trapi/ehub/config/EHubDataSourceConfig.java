@@ -38,7 +38,7 @@ public class EHubDataSourceConfig {
 
     @Primary
     @Bean(name = "ehubDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.ehub")
+    @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource dataSource(){
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }

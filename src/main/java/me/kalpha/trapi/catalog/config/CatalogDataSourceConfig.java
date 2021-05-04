@@ -36,7 +36,7 @@ public class CatalogDataSourceConfig {
     private HibernateProperties hibernateProperties;
 
     @Bean(name = "catalogDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.catalog")
+    @ConfigurationProperties(prefix = "catalog.datasource.hikari")
     public DataSource dataSource(){
         return DataSourceBuilder.create().type(HikariDataSource.class).build();
     }
