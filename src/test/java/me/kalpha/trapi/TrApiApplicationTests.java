@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ActiveProfiles("test")
 @SpringBootTest
-class TrApiApplicationTest {
+class TrApiApplicationTests {
     @Autowired
     DataSource dataSource;
 
