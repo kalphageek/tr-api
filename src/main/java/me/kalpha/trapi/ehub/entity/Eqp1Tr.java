@@ -13,6 +13,7 @@ import java.util.List;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
+@Table(name = "eqp1Tr")
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id","name","value","eventTime"})

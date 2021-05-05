@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
+@Table(name = "eqp1TrDet")
 @Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id","col1","col2"})
