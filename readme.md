@@ -33,3 +33,22 @@ trRepository.save(eqp1Tr)
 ```
 4. DataSourceBuilder 를 이용해 생성할 때
     * url -> jdbcUrl 
+   
+5. Test 데이터
+```json
+{
+    "name" : "lot2",
+    "value" : "123454",
+    "eventTime" : "2021-05-05T00:11:41.4235126",
+    "eqp1TrDetDtos" : [
+        {
+            "col1" : "col1",
+            "col2" : "837466"
+        },
+        {
+            "col1" : "col2",
+            "col2" : "66"
+        }
+    ]
+}
+```
