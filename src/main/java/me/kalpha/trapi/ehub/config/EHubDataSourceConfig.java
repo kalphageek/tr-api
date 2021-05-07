@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import me.kalpha.trapi.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -37,10 +38,16 @@ public class EHubDataSourceConfig {
     private HibernateProperties hibernateProperties;
 
     @Primary
+    @Bean(name = "ehubDataSourceProperties")
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSourceProperties dataSourceProperties() {
+        return new DataSourceProperties();
+    }
+
+    @Primary
     @Bean(name = "ehubDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource dataSource(){
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+        return dataSourceProperties().initializeDataSourceBuilder().build();
     }
 
     @Primary

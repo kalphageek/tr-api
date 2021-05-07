@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import me.kalpha.trapi.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -35,10 +36,15 @@ public class CatalogDataSourceConfig {
     @Autowired
     private HibernateProperties hibernateProperties;
 
+    @Bean(name = "catalogDataSourceProperties")
+    @ConfigurationProperties(prefix = "catalog.datasource")
+    public DataSourceProperties dataSourceProperties() {
+        return new DataSourceProperties();
+    }
+
     @Bean(name = "catalogDataSource")
-    @ConfigurationProperties(prefix = "catalog.datasource.hikari")
     public DataSource dataSource(){
-        return DataSourceBuilder.create().type(HikariDataSource.class).build();
+        return dataSourceProperties().initializeDataSourceBuilder().build();
     }
 
     @Bean(name = "catalogEntityManagerFactory")
