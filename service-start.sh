@@ -20,4 +20,4 @@ else
 fi
 
 echo "> deploy new version."
-nohup java -jar $JAR_NAME &
+java -jar $JAR_NAME
