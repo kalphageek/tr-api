@@ -19,9 +19,9 @@ import java.time.LocalDateTime;
 @MappedSuperclass //DB컬럼을 상속할 수 있도록 한다.
 public class CreatedBaseEntity {
     @CreatedDate
-    @Column(updatable = false)
+    @Column(name = "created_date", updatable = false)
     private LocalDateTime createdDate;
     @CreatedBy
-    @Column(updatable = false)
+    @Column(name = "created_by", updatable = false)
     private String createdBy;
 }
