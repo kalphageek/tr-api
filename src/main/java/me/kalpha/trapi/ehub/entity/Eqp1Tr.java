@@ -1,6 +1,7 @@
 package me.kalpha.trapi.ehub.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -23,6 +24,7 @@ public class Eqp1Tr extends CreatedBaseEntity {
 
     private String name;
     private Long value;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime eventTime;
 
     public List<Eqp1TrDet> getEqp1TrDets() {
