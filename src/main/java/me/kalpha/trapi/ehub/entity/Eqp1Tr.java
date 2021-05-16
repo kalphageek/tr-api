@@ -8,8 +8,8 @@ import lombok.*;
 import me.kalpha.trapi.common.CreatedBaseEntity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
@@ -27,7 +27,7 @@ public class Eqp1Tr extends CreatedBaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @Column(name = "event_time")
-    private LocalDateTime eventTime;
+    private Date eventTime;
 
     public List<Eqp1TrDet> getEqp1TrDets() {
         if (eqp1TrDets == null)

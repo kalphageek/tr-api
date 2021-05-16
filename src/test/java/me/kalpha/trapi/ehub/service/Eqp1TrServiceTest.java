@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -32,7 +33,7 @@ class Eqp1TrServiceTest {
 
     private Eqp1TrDto generateEqp1TrDto(String trName) {
         Eqp1TrDto eqp1TrDto = Eqp1TrDto.builder()
-                .name(trName).value(123454l).eventTime(LocalDateTime.now())
+                .name(trName).value(123454l).eventTime(new Date())
                 .build();
         Eqp1TrDetDto eqp1TrDetDto1 = Eqp1TrDetDto.builder()
                 .col1("col1").col2(837466l)
