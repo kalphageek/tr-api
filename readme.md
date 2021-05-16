@@ -52,3 +52,9 @@ trRepository.save(eqp1Tr)
     ]
 }
 ```
+6. LocalDateTime 속성의 Json Format 변경
+* Array -> Formatted String
+```java
+@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+LocalDataTime eventTime;
+```
