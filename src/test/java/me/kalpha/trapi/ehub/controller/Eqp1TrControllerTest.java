@@ -9,7 +9,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -35,7 +34,7 @@ public class Eqp1TrControllerTest extends BaseControllerTest {
 
     private Eqp1TrDto generateEqp1TrDto(String trName) {
         Eqp1TrDto eqp1TrDto = Eqp1TrDto.builder()
-                .name(trName).value(123454l).eventTime(new Date())
+                .name(trName).value(123454l).eventTime(LocalDateTime.now())
                 .build();
         Eqp1TrDetDto eqp1TrDetDto1 = Eqp1TrDetDto.builder()
                 .col1("col1").col2(837466l)

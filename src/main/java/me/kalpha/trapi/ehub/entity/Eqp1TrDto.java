@@ -17,8 +17,7 @@ import java.util.List;
 public class Eqp1TrDto {
     private String name;
     private Long value;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-    private Date eventTime;
+    private LocalDateTime eventTime;
     private List<Eqp1TrDetDto> eqp1TrDetDtos;
 
     public List<Eqp1TrDetDto> getEqp1TrDetDtos() {
