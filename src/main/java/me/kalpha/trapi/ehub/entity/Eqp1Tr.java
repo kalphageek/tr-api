@@ -24,7 +24,9 @@ public class Eqp1Tr extends CreatedBaseEntity {
 
     private String name;
     private Long value;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS", timezone = "Asia/Seoul")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    @Column(name = "event_time")
     private LocalDateTime eventTime;
 
     public List<Eqp1TrDet> getEqp1TrDets() {
