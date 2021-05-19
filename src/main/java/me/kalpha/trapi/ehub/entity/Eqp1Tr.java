@@ -24,8 +24,8 @@ public class Eqp1Tr extends CreatedBaseEntity {
 
     private String name;
     private Long value;
-    @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "event_time")
     private Date eventTime;
 

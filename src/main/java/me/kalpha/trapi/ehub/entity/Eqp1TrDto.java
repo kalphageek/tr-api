@@ -1,12 +1,9 @@
 package me.kalpha.trapi.ehub.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import me.kalpha.trapi.ehub.entity.Eqp1TrDetDto;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +14,6 @@ import java.util.List;
 public class Eqp1TrDto {
     private String name;
     private Long value;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private Date eventTime;
     private List<Eqp1TrDetDto> eqp1TrDetDtos;
 
