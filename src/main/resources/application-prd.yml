@@ -1,7 +1,6 @@
 spring:
   profiles: prd
   jpa:
-    generate-ddl: true
     hibernate:
       ddl-auto: none
     properties:
