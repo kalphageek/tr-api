@@ -20,7 +20,7 @@ public class Eqp1TrDet extends CreatedBaseEntity {
     private Long col2;
 
     @ManyToOne
-    @JoinColumn(name = "tr_id")
+    @JoinColumn(name = "tr_id", referencedColumnName = "id", foreignKey = @ForeignKey(value = ConstraintMode.NO_CONSTRAINT))
     private Eqp1Tr eqp1Tr;
 
     public void assignEqp1Tr(Eqp1Tr eqp1Tr) {
