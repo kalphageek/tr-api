@@ -18,7 +18,7 @@ import java.util.Date;
 @Getter
 @MappedSuperclass //DB컬럼을 상속할 수 있도록 한다.
 public class CreatedBaseEntity {
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     @Column(name = "created_date", updatable = false)
