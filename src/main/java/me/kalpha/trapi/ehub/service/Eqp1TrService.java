@@ -8,10 +8,13 @@ import me.kalpha.trapi.ehub.repository.Eqp1TrDetRepository;
 import me.kalpha.trapi.ehub.repository.Eqp1TrRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -39,7 +42,14 @@ public class Eqp1TrService {
         log.info("eqq1Tr : {}({})", eqp1Tr, eqp1TrDets.size());
 
         // Publish to app.topic.name Topic
-        trProducerService.sendMessage(eqp1Tr);
+//        trProducerService.sendMessage(eqp1Tr);
+
+        return eqp1Tr;
+    }
+
+    public Eqp1Tr getTr(Long id) {
+        Optional<Eqp1Tr> optionalEqp1Tr = trRepository.findById(id);
+        Eqp1Tr eqp1Tr = optionalEqp1Tr.orElseThrow(() -> new NoSuchElementException("요청하는 데이터가 없습니다 : " + id));
 
         return eqp1Tr;
     }

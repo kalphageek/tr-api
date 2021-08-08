@@ -28,7 +28,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef = "ehubEntityManagerFactory",
         transactionManagerRef = "ehubTransactionManager",
-        basePackages = {"me.kalpha.trapi.ehub.repository"}//repositories
+        basePackages = {"me.kalpha.trapi.ehub.repository", "me.kalpha.trapi.accounts"}//repositories
 )
 @EnableTransactionManagement
 public class EHubDataSourceConfig {
@@ -59,7 +59,7 @@ public class EHubDataSourceConfig {
 
         return builder
                 .dataSource(dataSource())
-                .packages("me.kalpha.trapi.ehub.entity")
+                .packages("me.kalpha.trapi.ehub.entity", "me.kalpha.trapi.accounts")
                 .persistenceUnit(Constants.EHUB_UNIT_NAME)
                 .properties(properties)
                 .build();

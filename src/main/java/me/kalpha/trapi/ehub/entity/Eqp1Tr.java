@@ -1,11 +1,11 @@
 package me.kalpha.trapi.ehub.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import me.kalpha.trapi.common.CreatedBaseEntity;
+import me.kalpha.trapi.accounts.Account;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -36,5 +36,5 @@ public class Eqp1Tr extends CreatedBaseEntity {
     }
 
     @OneToMany(mappedBy = "eqp1Tr", cascade = CascadeType.ALL)
-    List<Eqp1TrDet> eqp1TrDets;
+    private List<Eqp1TrDet> eqp1TrDets;
 }
