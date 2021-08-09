@@ -82,4 +82,7 @@ LocalDataTime eventTime;
       "scope" : "read write"
    }
    ```
+8. 리소스서버 설정
+   1. ResourceServerConfig.java
+      * 리소스 (eqp1Tr)의 endpoint에 대한 접근 권한 설정한다  
    
