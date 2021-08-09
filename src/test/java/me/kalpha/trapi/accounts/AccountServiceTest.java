@@ -28,7 +28,7 @@ class AccountServiceTest {
         String userId = "kalphageek";
         String password = "kalphageek";
 
-        generateAccount(userId, password);
+        Account account = generateAccount(userId, password);
 
         UserDetailsService userDetailsService = (UserDetailsService) this.accountService;
         UserDetails userDetails = userDetailsService.loadUserByUsername(userId);
@@ -51,12 +51,13 @@ class AccountServiceTest {
         }
     }
 
-    private void generateAccount(String userId, String password) {
+    private Account generateAccount(String userId, String password) {
         Account account = Account.builder()
                 .userId(userId)
                 .password(password)
                 .build();
 
         accountService.saveAccount(account);
+        return account;
     }
 }

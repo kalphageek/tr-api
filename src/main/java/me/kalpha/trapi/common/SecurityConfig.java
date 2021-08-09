@@ -19,17 +19,28 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    /**
+     * UserDetails를 가지고 있다
+     */
     @Autowired
     AccountService accountService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    /**
+     * Token을 저장한다.
+     */
     @Bean
     public TokenStore tokenStore() {
         return new InMemoryTokenStore();
     }
 
+    /**
+     * User 정보를 가지고 있음
+     * @return
+     * @throws Exception
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -42,21 +53,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder);
     }
 
+    /**
+     * 인증에 들어가기 전에 필터링한다.
+     * @param web
+     * @throws Exception
+     */
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().mvcMatchers("/docs/index.html");
         // static resource는 security 적용 제외
         web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.anonymous()
-                .and()
-            .formLogin()
-                .and()
-            .authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/v1/icems/**").anonymous()
-                .anyRequest().authenticated();
     }
 }

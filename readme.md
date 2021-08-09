@@ -58,3 +58,28 @@ trRepository.save(eqp1Tr)
 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 LocalDataTime eventTime;
 ```
+7. 인증서버 설정
+   1. AppConfig.java : 
+      * PasswordEncoder
+   2. Account.java : 엔티티   
+   3. AccountService :  UserDetailsService 구현
+   4. SecurityConfig.java
+      * AuthenticationManager
+      * TokenStore
+   5. AuthServerConfig.java : 인증서버 설정
+      * clientId
+      * clientSecret
+      * grant_type : password, refresh_token
+      * username
+      * password 
+   6. response
+   ```json
+   {
+      "access_token" : "d62340af-9b5b-4b5c-bd4c-c357b7e307bf",
+      "token_type" : "bearer",
+      "refresh_token" : "cf810352-ce0d-4d24-9f78-d52dc1c7eb02",
+      "expires_in" : 599,
+      "scope" : "read write"
+   }
+   ```
+   
