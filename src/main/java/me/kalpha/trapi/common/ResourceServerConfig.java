@@ -8,11 +8,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
+/**
+ * 인증토큰이 있는지 확인하고, 리소스 접근을 제한한다
+ */
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+        //clientId
         resources.resourceId("eqp1Tr");
     }
 
@@ -22,7 +26,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .anonymous() // anonymous를 허용한다
                     .and()
                 .authorizeRequests()
-                    .mvcMatchers(HttpMethod.GET, "/v1/**").anonymous() // /v1/* 아래의 GET 호출은 anonymous
+                    .mvcMatchers(HttpMethod.GET, "/v1/**").permitAll() // /v1/* 아래의 GET 호출은 anonymous
                     .anyRequest().authenticated() // 그 외는 인증을 필요로 한다
                     .and()
                 .exceptionHandling()

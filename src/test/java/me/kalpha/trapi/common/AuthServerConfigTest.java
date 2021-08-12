@@ -1,12 +1,14 @@
 package me.kalpha.trapi.common;
 
 import me.kalpha.trapi.accounts.Account;
+import me.kalpha.trapi.accounts.AccountRole;
 import me.kalpha.trapi.accounts.AccountService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Set;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -20,9 +22,9 @@ class AuthServerConfigTest extends BaseControllerTest {
 
     @Test
     void getAuthToken() throws Exception {
-        String username = "kalphageek";
-        String password = "kalphageek";
-        Account account = generateAccount(username, password);
+        String username = "admin";
+        String password = "admin";
+        saveAccount(username, password);
 
         String clientId = "eqp1Tr";
         String clientSecret = "pass";
@@ -38,10 +40,11 @@ class AuthServerConfigTest extends BaseControllerTest {
         ;
     }
 
-    private Account generateAccount(String userId, String password) {
+    private Account saveAccount(String userId, String password) {
         Account account = Account.builder()
                 .userId(userId)
                 .password(password)
+                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
                 .build();
 
         accountService.saveAccount(account);

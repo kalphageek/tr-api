@@ -58,21 +58,24 @@ trRepository.save(eqp1Tr)
 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 LocalDataTime eventTime;
 ```
-7. 인증서버 설정
+7. 로그인 설정
    1. AppConfig.java : 
       * PasswordEncoder
    2. Account.java : 엔티티   
    3. AccountService :  UserDetailsService 구현
-   4. SecurityConfig.java
+   4. SecurityConfig.java : 로그인을 담당하는 AuthenticationManager를 등록
       * AuthenticationManager
       * TokenStore
-   5. AuthServerConfig.java : 인증서버 설정
+8. 인증서버 설정      
+   1. AuthServerConfig.java
       * clientId
       * clientSecret
       * grant_type : password, refresh_token
       * username
-      * password 
-   6. response
+      * password
+      
+   2. post("/oauth/token") : 인증서버 end point
+   3. response
    ```json
    {
       "access_token" : "d62340af-9b5b-4b5c-bd4c-c357b7e307bf",
@@ -82,7 +85,30 @@ LocalDataTime eventTime;
       "scope" : "read write"
    }
    ```
-8. 리소스서버 설정
+9. 리소스서버 설정
    1. ResourceServerConfig.java
-      * 리소스 (eqp1Tr)의 endpoint에 대한 접근 권한 설정한다  
-   
+      * 인증토큰이 있는지 확인하고, 리소스(resourceId) 접근을 제한한다 
+10. Request에 Header 추가
+   * post().header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
+11. Access Token 생성 Test : getAccessToken()
+```java
+    ResultActions perform = mockMvc.perform(post("/oauth/token")
+        .with(httpBasic(clientId, clientSecret))
+        .param("username", username)
+        .param("password", password)
+        .param("grant_type", "password"))
+        ;
+    // mockMvc.perform(post()).andDo(print()) -> responseBody
+    String responseBody = perform.andReturn().getResponse().getContentAsString();
+    // Json Parser
+    Jackson2JsonParser parser = new Jackson2JsonParser();
+    String accessToken = parser.parseMap(responseBody).get("access_token").toString();
+```
+12. 실행 방법
+* Access Token 가져오기 -> http://localhost/oauth/token
+  * Authorization -> Basic Auth -> username : [clientId], password : [clientSecrete]
+  * Body -> form-data -> username : [사용자username], password : [사용자password], grant_type : "password"   
+  * result -> [accces_token]
+* createTr 실행 -> http://localhost/v1/icems/createTr
+  * Authorization : Bearer Token -> [accces_token]
+  * body : [Json Body]
