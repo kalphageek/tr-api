@@ -56,6 +56,7 @@ public class AppConfig {
                 Account account = Account.builder()
                         .userId("admin")
                         .password("admin")
+//                        .roles(Set.of(AccountRole.USER))
                         .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
                         .build();
 

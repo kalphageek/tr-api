@@ -20,6 +20,13 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         resources.resourceId("eqp1Tr");
     }
 
+    /**
+     * antMatchers 와 mvcMatchers의 차이
+     * antMatchers("/secured")는 정확한 /secured URL 과만 일치
+     * mvcMatchers("/secured")는 /secured, /secured/, /secured.html와 일치
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http

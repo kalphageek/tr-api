@@ -35,12 +35,6 @@ public class Eqp1TrControllerTest extends BaseControllerTest {
 
     @Autowired
     Eqp1TrService eqp1TrService;
-    @Autowired
-    AccountService accountService;
-    @Autowired
-    AccountRepository accountRepository;
-    @Autowired
-    Eqp1TrRepository eqp1TrRepository;
 
 //    @BeforeEach
 //    void setUp() {
@@ -83,14 +77,6 @@ public class Eqp1TrControllerTest extends BaseControllerTest {
     private String getAccessToken() throws Exception {
         String username = "admin";
         String password = "admin";
-        Account account = Account.builder()
-                .userId(username)
-                .password(password)
-                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
-                .build();
-
-        accountService.saveAccount(account);
-
         String clientId = "eqp1Tr";
         String clientSecret = "pass";
 
