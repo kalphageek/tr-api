@@ -17,7 +17,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         //clientId
-        resources.resourceId("eqp1Tr");
+        resources.resourceId("resource_test");
     }
 
     /**
@@ -30,6 +30,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+                .httpBasic().disable() // rest api 이므로 기본설정 사용안함. 기본설정은 비인증시 로그인폼 화면으로 리다이렉트 된다.
+                .csrf().disable() // rest api이므로 csrf 보안이 필요없으므로 disable처리.
                 .anonymous() // anonymous를 허용한다
                     .and()
                 .authorizeRequests()

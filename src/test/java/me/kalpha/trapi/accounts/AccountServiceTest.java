@@ -25,8 +25,8 @@ class AccountServiceTest {
 
     @Test
     void findByUserId() {
-        String userId = "kalphageek";
-        String password = "kalphageek";
+        String userId = "admin";
+        String password = "admin";
 
         Account account = generateAccount(userId, password);
 
@@ -39,7 +39,7 @@ class AccountServiceTest {
 
     @Test
     void findByUserIdFail() {
-        String userId = "kalphageek1";
+        String userId = "admin1";
 
 //        generateAccount(userId, password);
 

@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 public class Eqp1TrControllerTest extends BaseControllerTest {
 
     @Autowired
@@ -71,16 +71,17 @@ public class Eqp1TrControllerTest extends BaseControllerTest {
     }
 
     private String getBearerToken() throws Exception {
-        return "Bearer " + getAccessToken();
+        return "Bearer 3LmhX_vB0Q9JExFDdhnvGzwvsQg";
+//        return "Bearer " + getAccessToken();
     }
 
     private String getAccessToken() throws Exception {
         String username = "admin";
         String password = "admin";
-        String clientId = "eqp1Tr";
+        String clientId = "resource_test";
         String clientSecret = "pass";
 
-        ResultActions perform = mockMvc.perform(post("/oauth/token")
+        ResultActions perform = mockMvc.perform(post("http://localhost:18080/oauth/token")
                 .with(httpBasic(clientId, clientSecret))
                 .param("username", username)
                 .param("password", password)

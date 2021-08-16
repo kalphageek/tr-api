@@ -15,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -24,16 +27,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Autowired
     AccountService accountService;
-
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    DataSource dataSource;
 
     /**
      * Token을 저장한다.
      */
     @Bean
     public TokenStore tokenStore() {
-        return new InMemoryTokenStore();
+        return new JdbcTokenStore(dataSource);
+//        return new InMemoryTokenStore();
     }
 
     /**
